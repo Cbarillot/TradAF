@@ -18,6 +18,10 @@
 
 # Compiled PDFs (optional - uncomment if you don't want to commit PDFs)
 # *.pdf
+Cliges_v2345-2497.pdf
+
+# Old/backup files
+Cliges_v2345-2497_old.tex
 
 # TeX Live font cache
 .texlive*/
@@ -28,3 +32,4 @@
 .DS_Store
 Thumbs.db
 *~
+Cliges_v2345-2497_old.tex
