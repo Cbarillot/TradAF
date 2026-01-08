@@ -1,0 +1,30 @@
+# LaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.lot
+*.lof
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.idx
+*.ilg
+*.ind
+
+# Compiled PDFs (optional - uncomment if you don't want to commit PDFs)
+# *.pdf
+
+# TeX Live font cache
+.texlive*/
+*.600gf
+*.tfm
+
+# OS files
+.DS_Store
+Thumbs.db
+*~

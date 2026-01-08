@@ -1,0 +1,148 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{tradaf}
+
+\title{Exemple de Traduction Comparée\\Ancien Français -- Français Contemporain}
+\author{Utilisant le package TradAF}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction}
+
+Ce document illustre l'utilisation du package \texttt{tradaf} pour créer des traductions comparées de textes en ancien français vers le français contemporain, avec des notes de traduction catégorisées.
+
+\subsection*{Catégories de notes disponibles}
+
+\begin{itemize}
+  \item \textcolor{lexiquecolor}{\textbf{Lexique}} : notes sur le vocabulaire et le sens des mots
+  \item \textcolor{syntaxecolor}{\textbf{Syntaxe}} : notes sur la structure des phrases
+  \item \textcolor{morphologiecolor}{\textbf{Morphologie}} : notes sur les formes grammaticales
+  \item \textcolor{otherscolor}{\textbf{Autres}} : notes diverses (contexte historique, culturel, etc.)
+\end{itemize}
+
+\newpage
+
+% Example 1: All categories shown
+\begin{translationsection}{Extrait 1 : La Chanson de Roland (avec toutes les catégories)}
+
+\begin{translation}
+
+\oldfrench
+\verseline Carles li reis, nostre emperere magnes,\\
+\verseline Set anz tuz pleins ad estét en Espaigne :\notelexique{«magnes» signifie «grand», du latin \textit{magnus}}\\
+\verseline Tresqu'en la mer cunquist la tere altaigne.\notesyntaxe{Inversion sujet-verbe typique de l'ancien français}\\
+\verseline N'i ad castel ki devant lui remaigne\notemorphologie{«remaigne» : subjonctif présent, 3e pers. du verbe «remaindre» (rester)}\\
+\verseline Murs ne citét n'i est remés a fraindre,\noteother{Référence à la conquête de l'Espagne par Charlemagne, récit légendaire}\\
+
+\modernfrench
+\verseline Charles le roi, notre grand empereur,\\
+\verseline Sept ans entiers a été en Espagne :\\
+\verseline Jusqu'à la mer il conquit la terre altière.\\
+\verseline Il n'y a château qui tienne devant lui,\\
+\verseline Mur ni cité qui reste à détruire,\\
+
+\end{translation}
+
+\end{translationsection}
+
+\newpage
+
+% Example 2: Only lexique and syntaxe
+\showonlycategories{lexique,syntaxe}
+
+\begin{translationsection}{Extrait 2 : Même texte (uniquement lexique et syntaxe)}
+
+\begin{translation}
+
+\oldfrench
+\verseline Carles li reis, nostre emperere magnes,\\
+\verseline Set anz tuz pleins ad estét en Espaigne :\notelexique{«magnes» signifie «grand», du latin \textit{magnus}}\\
+\verseline Tresqu'en la mer cunquist la tere altaigne.\notesyntaxe{Inversion sujet-verbe typique de l'ancien français}\\
+\verseline N'i ad castel ki devant lui remaigne\notemorphologie{«remaigne» : subjonctif présent, 3e pers. du verbe «remaindre» (rester)}\\
+\verseline Murs ne citét n'i est remés a fraindre,\noteother{Référence à la conquête de l'Espagne par Charlemagne, récit légendaire}\\
+
+\modernfrench
+\verseline Charles le roi, notre grand empereur,\\
+\verseline Sept ans entiers a été en Espagne :\\
+\verseline Jusqu'à la mer il conquit la terre altière.\\
+\verseline Il n'y a château qui tienne devant lui,\\
+\verseline Mur ni cité qui reste à détruire,\\
+
+\end{translation}
+
+\end{translationsection}
+
+\newpage
+
+% Example 3: Only morphologie
+\showonlycategories{morphologie}
+
+\begin{translationsection}{Extrait 3 : Le Roman de Renart (uniquement morphologie)}
+
+\begin{translation}
+
+\oldfrench
+\verseline Seignors, oï avez\notemorphologie{«oï» : participe passé de «oïr» (entendre)} maint conte\\
+\verseline Que maint conterre vous raconte\notemorphologie{«conterre» : forme ancienne de «conteur»}\\
+\verseline Comment Paris ravi Elaine\notemorphologie{«ravi» : passé simple de «ravir» (enlever)}\\
+\verseline Le mal qu'il en ot et la paine\notemorphologie{«ot» : passé simple de «avoir», 3e personne}\\
+
+\modernfrench
+\verseline Seigneurs, vous avez entendu maints contes\\
+\verseline Que maint conteur vous raconte\\
+\verseline Comment Pâris enleva Hélène\\
+\verseline Le mal qu'il en eut et la peine\\
+
+\end{translation}
+
+\end{translationsection}
+
+\newpage
+
+% Reset to show all categories
+\showallcategories
+
+\begin{translationsection}{Extrait 4 : Prose (toutes catégories)}
+
+\begin{translation}
+
+\oldfrench
+En cel tens\notelexique{«cel» : forme ancienne de «ce», du latin \textit{ille}} que li rois Artus\noteother{Le roi Arthur, figure légendaire de la matière de Bretagne} tenoit\notemorphologie{«tenoit» : imparfait de l'indicatif, 3e pers. sing.} la terre de Logres\noteother{«Logres» : nom ancien de l'Angleterre}, fu avenuz\notemorphologie{«avenuz» : participe passé de «avenir» (arriver)} une chose merveilleuse\notelexique{«merveilleuse» : digne d'émerveillement, prodigieuse}.
+
+\modernfrench
+En ce temps où le roi Arthur tenait la terre de Logres, il arriva une chose merveilleuse.
+
+\end{translation}
+
+\end{translationsection}
+
+\section*{Instructions d'utilisation}
+
+\subsection*{Filtrage des catégories}
+
+\begin{itemize}
+  \item \texttt{\textbackslash showallcategories} : afficher toutes les catégories
+  \item \texttt{\textbackslash showonlycategories\{lexique,syntaxe\}} : afficher uniquement certaines catégories
+  \item \texttt{\textbackslash showlexique}, \texttt{\textbackslash hidelexique} : afficher/masquer la catégorie lexique
+  \item Commandes similaires pour \texttt{syntaxe}, \texttt{morphologie}, et \texttt{others}
+\end{itemize}
+
+\subsection*{Commandes principales}
+
+\begin{itemize}
+  \item \texttt{\textbackslash begin\{translation\}} : environnement pour le texte parallèle
+  \item \texttt{\textbackslash oldfrench} : basculer vers la colonne ancien français
+  \item \texttt{\textbackslash modernfrench} : basculer vers la colonne français moderne
+  \item \texttt{\textbackslash notelexique\{...\}} : ajouter une note de lexique
+  \item \texttt{\textbackslash notesyntaxe\{...\}} : ajouter une note de syntaxe
+  \item \texttt{\textbackslash notemorphologie\{...\}} : ajouter une note de morphologie
+  \item \texttt{\textbackslash noteother\{...\}} : ajouter une autre note
+  \item \texttt{\textbackslash verseline} : numéroter les vers (optionnel)
+\end{itemize}
+
+\end{document}
