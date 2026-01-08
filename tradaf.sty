@@ -93,19 +93,19 @@
 
 % User commands for adding categorized notes
 \newcommand{\notelexique}[1]{%
-  \@addnote{show@lexique}{lexiquecolor}{~\textsc{Lexique:} #1}%
+  \@addnote{show@lexique}{lexiquecolor}{ \textsc{Lexique:} #1}%
 }
 
 \newcommand{\notesyntaxe}[1]{%
-  \@addnote{show@syntaxe}{syntaxecolor}{~\textsc{Syntaxe:} #1}%
+  \@addnote{show@syntaxe}{syntaxecolor}{ \textsc{Syntaxe:} #1}%
 }
 
 \newcommand{\notemorphologie}[1]{%
-  \@addnote{show@morphologie}{morphologiecolor}{~\textsc{Morphologie:} #1}%
+  \@addnote{show@morphologie}{morphologiecolor}{ \textsc{Morphologie:} #1}%
 }
 
 \newcommand{\noteother}[1]{%
-  \@addnote{show@others}{otherscolor}{~\textsc{Note:} #1}%
+  \@addnote{show@others}{otherscolor}{ \textsc{Note:} #1}%
 }
 
 % Generic note command with category parameter
@@ -139,7 +139,7 @@
 \newcounter{verseline}
 \newcommand{\verseline}{%
   \stepcounter{verseline}%
-  \makebox[1em][r]{\tiny\theverseline.~}%
+  \makebox[2em][r]{\tiny\theverseline.~}%
 }
 
 % Command to reset verse line counter
