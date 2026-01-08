@@ -1,0 +1,156 @@
+% tradaf.sty - Package for comparative Old French to Contemporary French translation
+% Provides parallel text layout with categorized translation notes
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tradaf}[2026/01/08 v1.0 Comparative Old French Translation Package]
+
+% Required packages
+\RequirePackage{paracol}      % For parallel columns
+\RequirePackage{marginnote}   % For margin notes
+\RequirePackage{xcolor}       % For color coding
+\RequirePackage{etoolbox}     % For toggles and conditional logic
+\RequirePackage{geometry}     % For page layout
+\RequirePackage{enumitem}     % For customized lists
+\RequirePackage{fontenc}      % For font encoding
+
+% Page geometry - wide margins for notes
+\geometry{
+  left=2cm,
+  right=6cm,
+  top=2cm,
+  bottom=2cm,
+  marginparwidth=5cm,
+  marginparsep=0.5cm
+}
+
+% Category toggles - all enabled by default
+\newtoggle{show@lexique}
+\newtoggle{show@syntaxe}
+\newtoggle{show@morphologie}
+\newtoggle{show@others}
+
+% Enable all categories by default
+\toggletrue{show@lexique}
+\toggletrue{show@syntaxe}
+\toggletrue{show@morphologie}
+\toggletrue{show@others}
+
+% User commands to filter categories
+\newcommand{\showlexique}{\toggletrue{show@lexique}}
+\newcommand{\hidelexique}{\togglefalse{show@lexique}}
+\newcommand{\showsyntaxe}{\toggletrue{show@syntaxe}}
+\newcommand{\hidesyntaxe}{\togglefalse{show@syntaxe}}
+\newcommand{\showmorphologie}{\toggletrue{show@morphologie}}
+\newcommand{\hidemorphologie}{\togglefalse{show@morphologie}}
+\newcommand{\showothers}{\toggletrue{show@others}}
+\newcommand{\hideothers}{\togglefalse{show@others}}
+
+% Command to show only specific categories
+\newcommand{\showonlycategories}[1]{%
+  % First hide all
+  \togglefalse{show@lexique}%
+  \togglefalse{show@syntaxe}%
+  \togglefalse{show@morphologie}%
+  \togglefalse{show@others}%
+  % Then show requested ones
+  \@for\@category:=#1\do{%
+    \ifdefstring{\@category}{lexique}{\toggletrue{show@lexique}}{}%
+    \ifdefstring{\@category}{syntaxe}{\toggletrue{show@syntaxe}}{}%
+    \ifdefstring{\@category}{morphologie}{\toggletrue{show@morphologie}}{}%
+    \ifdefstring{\@category}{others}{\toggletrue{show@others}}{}%
+  }%
+}
+
+% Command to show all categories
+\newcommand{\showallcategories}{%
+  \toggletrue{show@lexique}%
+  \toggletrue{show@syntaxe}%
+  \toggletrue{show@morphologie}%
+  \toggletrue{show@others}%
+}
+
+% Colors for different categories
+\definecolor{lexiquecolor}{RGB}{0,102,204}      % Blue
+\definecolor{syntaxecolor}{RGB}{204,0,102}      % Magenta
+\definecolor{morphologiecolor}{RGB}{0,153,51}   % Green
+\definecolor{otherscolor}{RGB}{153,76,0}        % Brown
+
+% Counter for notes
+\newcounter{traduction@note}
+
+% Internal command for adding notes with category check
+\newcommand{\@addnote}[3]{%
+  % #1 = toggle name, #2 = color, #3 = text
+  \iftoggle{#1}{%
+    \stepcounter{traduction@note}%
+    \marginnote{%
+      \footnotesize\raggedright%
+      \textcolor{#2}{\textbf{[\thetraduction@note]}}%
+      \textcolor{#2}{#3}%
+    }%
+    \textsuperscript{\textcolor{#2}{\tiny[\thetraduction@note]}}%
+  }{}%
+}
+
+% User commands for adding categorized notes
+\newcommand{\notelexique}[1]{%
+  \@addnote{show@lexique}{lexiquecolor}{~\textsc{Lexique:} #1}%
+}
+
+\newcommand{\notesyntaxe}[1]{%
+  \@addnote{show@syntaxe}{syntaxecolor}{~\textsc{Syntaxe:} #1}%
+}
+
+\newcommand{\notemorphologie}[1]{%
+  \@addnote{show@morphologie}{morphologiecolor}{~\textsc{Morphologie:} #1}%
+}
+
+\newcommand{\noteother}[1]{%
+  \@addnote{show@others}{otherscolor}{~\textsc{Note:} #1}%
+}
+
+% Generic note command with category parameter
+\newcommand{\note}[2]{%
+  \ifdefstring{#1}{lexique}{\notelexique{#2}}{}%
+  \ifdefstring{#1}{syntaxe}{\notesyntaxe{#2}}{}%
+  \ifdefstring{#1}{morphologie}{\notemorphologie{#2}}{}%
+  \ifdefstring{#1}{other}{\noteother{#2}}{}%
+}
+
+% Environment for parallel translation
+\newenvironment{translation}{%
+  \setcolumnwidth{0.45\textwidth}%
+  \begin{paracol}{2}%
+}{%
+  \end{paracol}%
+}
+
+% Commands for switching between columns
+\newcommand{\oldfrench}{%
+  \switchcolumn[0]%
+  \itshape% Old French in italics
+}
+
+\newcommand{\modernfrench}{%
+  \switchcolumn[1]%
+  \normalfont% Modern French in normal font
+}
+
+% Command to add a verse or line number
+\newcounter{verseline}
+\newcommand{\verseline}{%
+  \stepcounter{verseline}%
+  \makebox[1em][r]{\tiny\theverseline.~}%
+}
+
+% Command to reset verse line counter
+\newcommand{\resetverseline}{\setcounter{verseline}{0}}
+
+% Environment for translation section with title
+\newenvironment{translationsection}[1]{%
+  \section*{#1}%
+  \resetverseline%
+  \setcounter{traduction@note}{0}%
+}{%
+}
+
+\endinput
