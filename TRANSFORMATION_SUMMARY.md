@@ -35,7 +35,7 @@ Successfully combined data from three sources:
 - Technical details on data processing
 
 ### 3. Note Categorization System
-Implemented automatic categorization of 200+ notes into four color-coded categories:
+Implemented automatic categorization of 159 notes into four color-coded categories:
 
 | Category | Color | LaTeX Command | Content Type |
 |----------|-------|---------------|--------------|
@@ -56,6 +56,11 @@ Implemented automatic categorization of 200+ notes into four color-coded categor
 - **Verse range**: v. 2345-2497 (153 verses)
 - **CSV rows processed**: 49
 - **Detailed notes integrated**: 64 verse annotations
+- **Total categorized notes**: 159
+  - Lexique: 24
+  - Syntaxe: 24
+  - Morphologie: 93
+  - Autres: 18
 - **File size**: ~202 KB
 
 ## Transformation Process
